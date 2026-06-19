@@ -1,0 +1,9 @@
+/* Hero Scroll Canvas custom styles */
+.hero-canvas {
+  /* 
+     Adjust the blur intensity here:
+     - Increasing the blur value (e.g., 1px) makes the animation softer.
+     - Decreasing the blur value (e.g., 0px) makes the animation sharper.
+  */
+  filter: blur(3px);
+}

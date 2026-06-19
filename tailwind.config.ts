@@ -8,10 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-outfit)", "sans-serif"],
+      },
+      colors: {
+        brand: {
+          yellow: "#f4c400",
+        },
+        luxury: {
+          bg: "#050505",
+          gold: "#d4af37", // metallic gold hue
+          goldHover: "#f3e5ab", // lighter champagne gold
+          gray: "#8e8e93",
+          border: "rgba(255, 255, 255, 0.08)",
+          glass: "rgba(5, 5, 5, 0.6)",
+        },
+      },
+      letterSpacing: {
+        'tightest': '-0.05em',
+        'widest': '0.15em',
       },
     },
   },

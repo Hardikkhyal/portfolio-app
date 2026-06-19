@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Immersive Creative Portfolio
 
-## Getting Started
+A state-of-the-art interactive scrollytelling portfolio built for Hardik Khyal, demonstrating high-performance web engineering, fluid canvas-based motion design, and responsive layouts.
 
-First, run the development server:
+## 🚀 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Interactive Canvas Scrollytelling:** A high-framerate sequence loading mechanism that renders responsive canvas-based image streams bound directly to scroll depth.
+- **Cinematic Hero Overlay:** Highly polished scroll-linked typography and stat reveals using Framer Motion (for desktop) and a custom GSAP ScrollTrigger timeline (for mobile).
+- **Dynamic Timeline (My Journey):** A center-aligned academic timeline featuring milestone cards and an SVG path connecting nodes that dynamically lights up, pulses, and draws itself as the user scrolls.
+- **Responsive About Me Layout:** A two-column digital space segment showcasing a clean layout, emphasis quotes in custom gold accents, and a stack of bespoke feature cards with solid gold left-border details.
+- **Smooth Scroll Integration:** Seamless viewport transitions managed by React Lenis.
+
+---
+
+## 🛠️ Technology Stack
+
+This project is built using a modern front-end stack designed for performance, fluid motion, and pixel-perfect aesthetics:
+
+| Technology | Purpose | Description |
+| :--- | :--- | :--- |
+| **Next.js 14** | Core Framework | Utilizes the Next.js App Router for server-rendered page loading and search engine optimization. |
+| **TypeScript** | Language | Ensuring clean, type-safe development across all interactive pages and components. |
+| **Tailwind CSS** | Styling | Fast, responsive styling with a custom luxury color palette (gold, dark slate, deep black). |
+| **GSAP & ScrollTrigger** | Animations | Controls complex timeline sequences, dynamic SVG path drawing, and scroll-linked element reveals. |
+| **Framer Motion** | Motion & Transforms | Used for spring-loaded transitions and mapping scroll offsets to text fade/scale values. |
+| **React Lenis** | Scroll Smoothing | Manages the browser scroll behavior to guarantee consistent smooth scrolling across devices. |
+| **Lucide React** | Icons | SVG vector icons styled with custom gold states and animations. |
+
+---
+
+## 📂 Directory Structure
+
+```text
+├── public/                  # Static assets
+│   ├── images/              # Custom brand image assets (journey background, etc.)
+│   ├── phonee/              # Responsive canvas JPEG frames for mobile devices
+│   └── sequence-1/          # High-resolution canvas JPEG frames for desktops
+├── src/
+│   ├── app/                 # Next.js App router pages, layouts, and global styles
+│   ├── components/          # Core interactive components
+│   │   ├── hero/            # HeroScroll canvas renderer and typography overlays
+│   │   ├── layout/          # Navigation and scroll container layouts
+│   │   ├── ui/              # Reusable UI component elements (Buttons, etc.)
+│   │   └── Journey.tsx      # SVG-revealed Academic Timeline component
+│   │   └── Welcome.tsx      # About Me grid and client testimonials
+│   ├── hooks/               # Custom React hooks (preloading, resizing listeners)
+│   └── lib/                 # Tailwind design style utilities
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Prerequisites
 
-## Learn More
+Make sure you have [Node.js](https://nodejs.org/) installed (version 18+ recommended).
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Install project dependencies:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Start the development server locally:
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build and Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To optimize and build the project for production:
+```bash
+npm run build
+```
+To run the production build locally:
+```bash
+npm run start
+```
