@@ -11,6 +11,7 @@ interface OverlayProps {
 
 export default function Overlay({ scrollYProgress }: OverlayProps) {
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Refs for mobile GSAP animations
   const titleRef = useRef<HTMLSpanElement>(null);
@@ -19,6 +20,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setMounted(true);
     if (typeof window === "undefined") return;
 
     const checkMobile = () => {
@@ -94,7 +96,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
         <motion.span
           ref={titleRef}
-          style={isMobile ? {} : { opacity: titleOpacity, scale: titleScale, y: titleY }}
+          style={!mounted || isMobile ? {} : { opacity: titleOpacity, scale: titleScale, y: titleY }}
           className="text-luxury-gold text-xs md:text-sm font-semibold uppercase tracking-widest mb-4"
         >
           F U L L - S T A C K   D E V E L O P E R   &   D E S I G N E R
@@ -102,7 +104,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
 
         <motion.h1
           ref={titleMainRef}
-          style={isMobile ? {} : { opacity: titleOpacity, scale: titleScale, y: titleY }}
+          style={!mounted || isMobile ? {} : { opacity: titleOpacity, scale: titleScale, y: titleY }}
           className="heading-premium text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight text-white text-center select-none"
         >
           hardikkhyal
@@ -111,7 +113,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         {/* Subtle grey description text with its own separate animation */}
         <motion.p
           ref={subheadingRef}
-          style={isMobile ? {} : { opacity: subheadingOpacity, scale: subheadingScale, y: subheadingY }}
+          style={!mounted || isMobile ? {} : { opacity: subheadingOpacity, scale: subheadingScale, y: subheadingY }}
           className="text-white/40 text-sm md:text-base max-w-xl text-center mt-6 font-light leading-relaxed select-none"
         >
           Hardik Khyal is a creative developer crafting high-performance, high-end web applications with pixel perfection.
@@ -127,7 +129,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
       </div>
 
       {/* Layer 3: Feature Grid & Statistics (Desktop only) */}
-      {!isMobile && (
+      {mounted && !isMobile && (
         <motion.div
           ref={gridRef}
           style={{ opacity: gridOpacity, y: gridY }}
