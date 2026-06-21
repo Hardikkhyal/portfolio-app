@@ -174,7 +174,7 @@ export default function HeroScroll() {
       )}
 
       {/* Main scroll height container track */}
-      <div ref={containerRef} className="relative h-[400vh] bg-luxury-bg">
+      <div ref={containerRef} data-hero-section className="relative h-[400vh] bg-transparent">
         {/* Sticky viewport content wrapper */}
         <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
           {/* Main Canvas drawing sequence */}
@@ -186,8 +186,14 @@ export default function HeroScroll() {
           {/* Typography overlays */}
           {isLoaded && <Overlay scrollYProgress={scrollYProgress} />}
 
-          {/* Subtle gradient vignette to overlay the canvas and enhance text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/0 to-[#050505] pointer-events-none z-15" />
+          {/* Top vignette for text legibility only */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/0 to-transparent pointer-events-none z-15" />
+
+          {/* Bottom cross-fade vignette — dissolves hero last frame into fetures.jpg blend zone */}
+          <div
+            className="absolute bottom-0 left-0 w-full h-[200px] pointer-events-none z-15"
+            style={{ background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.6) 100%)" }}
+          />
         </div>
       </div>
     </>

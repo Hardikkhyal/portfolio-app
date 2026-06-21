@@ -6,4 +6,16 @@
      - Decreasing the blur value (e.g., 0px) makes the animation sharper.
   */
   filter: blur(3px);
+
+  /*
+     Extend canvas 6px outside the container on all sides.
+     filter: blur() spreads pixels beyond the element boundary — overflow-hidden
+     on the parent clips that spread, creating visible dark edges on all 4 sides.
+     Pushing the canvas 6px outward ensures the clipped blur edges are hidden
+     behind the overflow-hidden boundary and never visible in the viewport.
+  */
+  top: -6px !important;
+  left: -6px !important;
+  width: calc(100% + 12px) !important;
+  height: calc(100% + 12px) !important;
 }

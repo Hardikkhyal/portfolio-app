@@ -16,15 +16,7 @@ A state-of-the-art interactive scrollytelling portfolio built for Hardik Khyal, 
 
 This project is built using a modern front-end stack designed for performance, fluid motion, and pixel-perfect aesthetics:
 
-| Technology | Purpose | Description |
-| :--- | :--- | :--- |
-| **Next.js 14** | Core Framework | Utilizes the Next.js App Router for server-rendered page loading and search engine optimization. |
-| **TypeScript** | Language | Ensuring clean, type-safe development across all interactive pages and components. |
-| **Tailwind CSS** | Styling | Fast, responsive styling with a custom luxury color palette (gold, dark slate, deep black). |
-| **GSAP & ScrollTrigger** | Animations | Controls complex timeline sequences, dynamic SVG path drawing, and scroll-linked element reveals. |
-| **Framer Motion** | Motion & Transforms | Used for spring-loaded transitions and mapping scroll offsets to text fade/scale values. |
-| **React Lenis** | Scroll Smoothing | Manages the browser scroll behavior to guarantee consistent smooth scrolling across devices. |
-| **Lucide React** | Icons | SVG vector icons styled with custom gold states and animations. |
+|c
 
 ---
 

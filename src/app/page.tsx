@@ -43,11 +43,21 @@ export default function Home() {
       {/* Fixed Header & Navigation */}
       <Navbar />
 
-      {/* Hero Canvas Scrollytelling Section */}
-      <HeroScroll />
+      {/*
+        Sky Continuity Zone
+        ─────────────────────────────────────────────────────────────────
+        Both the hero canvas and the Journey section share this wrapper.
+        The `background-attachment: fixed` image stays pinned to the
+        viewport, so when the hero animation ends the same sky bleeds
+        seamlessly into the top of the Journey section — no hard cut.
+      */}
+      <div>
+        {/* Hero Canvas Scrollytelling Section */}
+        <HeroScroll />
 
-      {/* Dynamic Scroll Journey */}
-      <Journey />
+        {/* Dynamic Scroll Journey (transparent top zone shows sky above) */}
+        <Journey />
+      </div>
 
       {/* Client Love Testimonials */}
       <Welcome testimonials={testimonials} />

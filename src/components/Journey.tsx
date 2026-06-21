@@ -260,16 +260,38 @@ export default function Journey() {
       id="journey"
       className="relative w-full z-20 mt-[-100vh] select-none"
     >
-      {/* Seamless transitions background header zone overlaying the sticky clouds */}
-      <div className="relative w-full h-[100vh] pointer-events-none flex flex-col justify-end overflow-hidden">
-        {/* Layer 2: Soft Gradient Fader to Dark Website BG */}
-        <div
-          className="absolute inset-0 z-20 bg-gradient-to-b from-transparent via-[#050505]/45 to-[#050505]"
-        />
-      </div>
+      {/*
+        Cinematic blend wrapper
+        ───────────────────────────────────────────────────────────────
+        fetures.jpg lives here ONCE — it spans both the cross-fade zone
+        and the content body as a single continuous background.
 
-      {/* Main content body in fully solid dark background */}
-      <div ref={contentRef} className="relative w-full bg-[#050505] py-20 pb-36 border-b border-white/[0.03]">
+        mask-image (5-stop eased curve, transparent → opaque over 100vh):
+          0vh  → fully transparent  : hero canvas shows through 100%
+          20vh → 15% opaque         : fetures.jpg barely starts bleeding in
+          50vh → 55% opaque         : midpoint cross-dissolve
+          80vh → 88% opaque         : nearly fully fetures.jpg
+          100vh→ fully opaque       : hard content starts here, zero seam
+      */}
+      <div
+        style={{
+          backgroundImage: "url('/images/fetures.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+          maskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 20vh, rgba(0,0,0,0.55) 50vh, rgba(0,0,0,0.88) 80vh, black 100vh)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 20vh, rgba(0,0,0,0.55) 50vh, rgba(0,0,0,0.88) 80vh, black 100vh)",
+        }}
+      >
+        {/* Cross-fade zone: hero canvas (z-10) shows through the transparent mask above */}
+        <div className="relative w-full h-[100vh] pointer-events-none" />
+
+        {/* Main content body — fetures.jpg fully opaque here from wrapper */}
+        <div
+          ref={contentRef}
+          className="relative w-full py-20 pb-36 border-b border-white/[0.03]"
+        >
+        {/* Radial gold accent */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.02),transparent_70%)] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -483,6 +505,7 @@ export default function Journey() {
             </div>
           </div>
         </div>
+        </div> {/* end blend wrapper */}
       </div>
     </section>
   );
