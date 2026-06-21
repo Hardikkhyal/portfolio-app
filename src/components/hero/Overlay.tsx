@@ -17,7 +17,6 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
   const titleRef = useRef<HTMLSpanElement>(null);
   const titleMainRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLParagraphElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -64,7 +63,6 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
     tl.to(subheading, { opacity: 1, scale: 1, y: 0, duration: 2 }) // Subheading fades in smoothly
       .to(subheading, { duration: 2.5 }) // Keep it visible briefly
       .to(subheading, { opacity: 0, scale: 1.05, y: -20, duration: 2 }) // Subheading fades out
-      .to(subheading, { duration: 5 }) // Spacer duration representing where the grid would be on desktop
       .to([titleUpper, titleMain], { opacity: 0, duration: 2, ease: "power1.inOut" }); // Fade out title at the very end
 
     return () => {
@@ -86,9 +84,6 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
 
   const hintOpacity = useTransform(scrollYProgress, [0, 1], [0, 0], { clamp: true });
   const hintY = useTransform(scrollYProgress, [0, 1], [0, 0], { clamp: true });
-
-  const gridOpacity = useTransform(scrollYProgress, [0.40, 0.60, 0.85, 1.0], [0, 1, 1, 0], { clamp: true });
-  const gridY = useTransform(scrollYProgress, [0.40, 0.60, 0.85, 1.0], [80, 0, 0, -50], { clamp: true });
 
   return (
     <div className="absolute inset-0 pointer-events-none z-20 w-full h-full">
@@ -127,51 +122,6 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
           Scroll to explore the journey
         </motion.p>
       </div>
-
-      {/* Layer 3: Feature Grid & Statistics (Desktop only) */}
-      {mounted && !isMobile && (
-        <motion.div
-          ref={gridRef}
-          style={{ opacity: gridOpacity, y: gridY }}
-          className="absolute inset-0 flex flex-col justify-end pb-24 md:pb-28 px-6 md:px-12 max-w-6xl mx-auto opacity-0"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 bg-[#0a0a0c]/60 backdrop-blur-xl border border-white/[0.04] rounded-3xl p-8 md:p-10 pointer-events-auto">
-            <div className="flex flex-col">
-              <span className="text-luxury-gold font-display text-4xl md:text-5xl font-extrabold mb-1">
-                50+
-              </span>
-              <span className="text-white text-xs uppercase tracking-widest font-semibold mb-2">
-                Projects Delivered
-              </span>
-              <span className="text-white/50 text-xs md:text-sm leading-relaxed">
-                Building dynamic applications, bespoke landing pages, and production-ready enterprise tools.
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-luxury-gold font-display text-4xl md:text-5xl font-extrabold mb-1">
-                99.9%
-              </span>
-              <span className="text-white text-xs uppercase tracking-widest font-semibold mb-2">
-                Performance Uptime
-              </span>
-              <span className="text-white/50 text-xs md:text-sm leading-relaxed">
-                Highly optimized codebases ensuring exceptional SEO rankings, fast load times, and perfect responsiveness.
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-luxury-gold font-display text-4xl md:text-5xl font-extrabold mb-1">
-                24h
-              </span>
-              <span className="text-white text-xs uppercase tracking-widest font-semibold mb-2">
-                Response Guarantee
-              </span>
-              <span className="text-white/50 text-xs md:text-sm leading-relaxed">
-                Active communication channels, dedicated support, and fluid developer-client collaboration throughout the lifecycle.
-              </span>
-            </div>
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 }
