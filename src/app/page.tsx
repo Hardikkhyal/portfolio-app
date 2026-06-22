@@ -3,7 +3,9 @@
 import Navbar from "@/components/layout/Navbar";
 import HeroScroll from "@/components/hero/HeroScroll";
 import Journey from "@/components/Journey";
+import Gallery from "@/components/Gallery";
 import Welcome, { Testimonial } from "@/components/Welcome";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const testimonials: Testimonial[] = [
@@ -59,8 +61,14 @@ export default function Home() {
         <Journey />
       </div>
 
+      {/* Gallery Showcase */}
+      <Gallery />
+
       {/* Client Love Testimonials */}
       <Welcome testimonials={testimonials} />
+
+      {/* Contact Section */}
+      <Contact />
 
       {/* Interactive Footer */}
       <Footer />

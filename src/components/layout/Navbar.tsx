@@ -50,11 +50,11 @@ export default function Navbar() {
             <span>+91 98765 43210</span>
           </a>
           <a
-            href="mailto:hello@hardikkhyal.com"
+            href="mailto:hardikkhyal@gmail.com"
             className="flex items-center gap-2 text-xs tracking-wider text-white/60 hover:text-luxury-gold transition-colors duration-300 font-medium"
           >
             <Mail className="h-3.5 w-3.5 text-luxury-gold" />
-            <span className="hidden lg:inline">hello@hardikkhyal.com</span>
+            <span className="hidden lg:inline">hardikkhyal@gmail.com</span>
           </a>
         </div>
       </header>

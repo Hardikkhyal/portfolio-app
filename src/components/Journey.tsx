@@ -4,6 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Code, Cpu } from "lucide-react";
+import Skills from "./Skills";
+import AboutMe from "./AboutMe";
+import FloatingStars from "./ui/FloatingStars";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -258,7 +261,7 @@ export default function Journey() {
     <section
       ref={containerRef}
       id="journey"
-      className="relative w-full z-20 mt-[-100vh] select-none"
+      className="relative w-full z-20 mt-[-50vh] select-none"
     >
       {/*
         Cinematic blend wrapper
@@ -266,12 +269,12 @@ export default function Journey() {
         fetures.jpg lives here ONCE — it spans both the cross-fade zone
         and the content body as a single continuous background.
 
-        mask-image (5-stop eased curve, transparent → opaque over 100vh):
+        mask-image (5-stop eased curve, transparent → opaque over 50vh):
           0vh  → fully transparent  : hero canvas shows through 100%
-          20vh → 15% opaque         : fetures.jpg barely starts bleeding in
-          50vh → 55% opaque         : midpoint cross-dissolve
-          80vh → 88% opaque         : nearly fully fetures.jpg
-          100vh→ fully opaque       : hard content starts here, zero seam
+          10vh → 15% opaque         : fetures.jpg barely starts bleeding in
+          25vh → 55% opaque         : midpoint cross-dissolve
+          40vh → 88% opaque         : nearly fully fetures.jpg
+          50vh → fully opaque       : hard content starts here, zero seam
       */}
       <div
         style={{
@@ -279,24 +282,41 @@ export default function Journey() {
           backgroundSize: "cover",
           backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
-          maskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 20vh, rgba(0,0,0,0.55) 50vh, rgba(0,0,0,0.88) 80vh, black 100vh)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 20vh, rgba(0,0,0,0.55) 50vh, rgba(0,0,0,0.88) 80vh, black 100vh)",
+          maskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 10vh, rgba(0,0,0,0.55) 25vh, rgba(0,0,0,0.88) 40vh, black 50vh)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 10vh, rgba(0,0,0,0.55) 25vh, rgba(0,0,0,0.88) 40vh, black 50vh)",
         }}
       >
+        {/* Floating Stars Background */}
+        <FloatingStars />
+
         {/* Cross-fade zone: hero canvas (z-10) shows through the transparent mask above */}
-        <div className="relative w-full h-[100vh] pointer-events-none" />
+        <div className="relative w-full h-[50vh] pointer-events-none" />
+
+        {/* About Me Section */}
+        <AboutMe />
+
+        {/* Skills Section */}
+        <Skills />
 
         {/* Main content body — fetures.jpg fully opaque here from wrapper */}
         <div
           ref={contentRef}
-          className="relative w-full py-20 pb-36 border-b border-white/[0.03]"
+          className="relative w-full py-12 pb-20"
         >
         {/* Radial gold accent */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.02),transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.02),transparent_70%)] pointer-events-none z-0" />
+
+        {/* Smooth gradient overlay: starts transparent from Journey top and fades to luxury-bg at the bottom with a 5-stop ease */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          style={{
+            background: "linear-gradient(to bottom, transparent 0%, rgba(5, 5, 5, 0.15) 30%, rgba(5, 5, 5, 0.55) 60%, rgba(5, 5, 5, 0.88) 85%, #050505 100%)"
+          }}
+        />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Section Header (Academic Timeline // My Journey) */}
-          <div className="text-center w-full mb-16 relative z-30">
+          <div className="text-center w-full mb-10 relative z-30">
             <span className="text-luxury-gold text-xs font-bold uppercase tracking-[0.25em] mb-3 block">
               academic timeline
             </span>
@@ -383,7 +403,7 @@ export default function Journey() {
             </svg>
 
             {/* Milestone Cards Column Layout */}
-            <div className="flex flex-col gap-24 md:gap-32 w-full relative z-20">
+            <div className="flex flex-col gap-12 md:gap-16 w-full relative z-20">
               {milestones.map((item, idx) => {
                 const Icon = item.icon;
                 const isEven = idx % 2 === 0;
@@ -433,12 +453,12 @@ export default function Journey() {
                             <span className="text-[10px] bg-luxury-gold/10 border border-luxury-gold/20 text-luxury-gold px-2.5 py-1 rounded-full uppercase font-black tracking-wider">
                               {item.badge}
                             </span>
-                            <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/60 px-2.5 py-1 rounded-full font-mono">
+                            <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/85 px-2.5 py-1 rounded-full font-mono">
                               {item.grade}
                             </span>
                           </div>
 
-                          <p className="text-white/50 text-sm leading-relaxed font-light">
+                          <p className="text-white/75 text-sm leading-relaxed font-light">
                             {item.details}
                           </p>
                         </div>
@@ -488,12 +508,12 @@ export default function Journey() {
                             <span className="text-[10px] bg-luxury-gold/10 border border-luxury-gold/20 text-luxury-gold px-2.5 py-1 rounded-full uppercase font-black tracking-wider">
                               {item.badge}
                             </span>
-                            <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/60 px-2.5 py-1 rounded-full font-mono">
+                            <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/85 px-2.5 py-1 rounded-full font-mono">
                               {item.grade}
                             </span>
                           </div>
 
-                          <p className="text-white/50 text-sm leading-relaxed font-light">
+                          <p className="text-white/75 text-sm leading-relaxed font-light">
                             {item.details}
                           </p>
                         </div>
