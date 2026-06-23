@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GraduationCap, Code, Cpu } from "lucide-react";
@@ -278,7 +279,7 @@ export default function Journey() {
       */}
       <div
         style={{
-          backgroundImage: "url('/images/fetures.jpg')",
+          backgroundImage: "url('/images/pexels-mert-kaya-60338873-12539305.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
@@ -421,8 +422,18 @@ export default function Journey() {
                       {isEven && (
                         <div
                           ref={(el) => { cardsRef.current[idx] = el; }}
-                          className="group relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.06] hover:border-luxury-gold/30 hover:bg-white/[0.04] p-8 md:p-10 rounded-3xl transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.3)] select-none text-left"
+                          className="group relative p-8 md:p-10 rounded-3xl select-none text-left transition-all duration-500"
                         >
+                          {/* Liquid Glass Background */}
+                          <div className="absolute inset-0 rounded-3xl overflow-hidden liquid-glass z-0" />
+                          
+                          {/* Ambient liquid glow backing and specular shine overlay */}
+                          <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none z-0">
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(212,175,55,0.04),transparent_70%)] pointer-events-none" />
+                            <div className="absolute top-0 left-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1500ms] ease-out pointer-events-none" />
+                          </div>
+
                           {/* Connecting Point Circle (Desktop Right-aligned) */}
                           <div
                             ref={(el) => { nodesRef.current[idx] = el; }}
@@ -431,36 +442,39 @@ export default function Journey() {
                             <div className="absolute inset-0 rounded-full bg-brand-yellow/50 opacity-0 scale-100 ring-pulse pointer-events-none" />
                           </div>
 
-                          {/* Milestone header */}
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div>
-                              <span className="text-luxury-gold text-xs font-mono font-semibold tracking-wider block mb-1">
-                                {item.year}
+                          {/* Content Container */}
+                          <div className="relative z-10">
+                            {/* Milestone header */}
+                            <div className="flex items-start justify-between gap-4 mb-4">
+                              <div>
+                                <span className="text-luxury-gold text-xs font-mono font-semibold tracking-wider block mb-1">
+                                  {item.year}
+                                </span>
+                                <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase tracking-tight">
+                                  {item.title}
+                                </h3>
+                              </div>
+                              <div className="p-3 bg-white/[0.03] rounded-2xl border border-white/[0.05] group-hover:bg-luxury-gold/15 group-hover:border-luxury-gold/30 transition-colors duration-300">
+                                <Icon className="w-6 h-6 text-luxury-gold" />
+                              </div>
+                            </div>
+
+                            <div className="flex flex-wrap gap-2.5 mb-6">
+                              <span className="text-[10px] bg-white/5 border border-white/[0.05] text-white/80 px-2.5 py-1 rounded-full uppercase font-bold tracking-wider">
+                                {item.institution}
                               </span>
-                              <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase tracking-tight">
-                                {item.title}
-                              </h3>
+                              <span className="text-[10px] bg-luxury-gold/10 border border-luxury-gold/20 text-luxury-gold px-2.5 py-1 rounded-full uppercase font-black tracking-wider">
+                                {item.badge}
+                              </span>
+                              <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/85 px-2.5 py-1 rounded-full font-mono">
+                                {item.grade}
+                              </span>
                             </div>
-                            <div className="p-3 bg-white/[0.03] rounded-2xl border border-white/[0.05] group-hover:bg-luxury-gold/15 group-hover:border-luxury-gold/30 transition-colors duration-300">
-                              <Icon className="w-6 h-6 text-luxury-gold" />
-                            </div>
-                          </div>
 
-                          <div className="flex flex-wrap gap-2.5 mb-6">
-                            <span className="text-[10px] bg-white/5 border border-white/[0.05] text-white/80 px-2.5 py-1 rounded-full uppercase font-bold tracking-wider">
-                              {item.institution}
-                            </span>
-                            <span className="text-[10px] bg-luxury-gold/10 border border-luxury-gold/20 text-luxury-gold px-2.5 py-1 rounded-full uppercase font-black tracking-wider">
-                              {item.badge}
-                            </span>
-                            <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/85 px-2.5 py-1 rounded-full font-mono">
-                              {item.grade}
-                            </span>
+                            <p className="text-white/75 text-sm leading-relaxed font-light">
+                              {item.details}
+                            </p>
                           </div>
-
-                          <p className="text-white/75 text-sm leading-relaxed font-light">
-                            {item.details}
-                          </p>
                         </div>
                       )}
                     </div>
@@ -476,8 +490,18 @@ export default function Journey() {
                       {!isEven && (
                         <div
                           ref={(el) => { cardsRef.current[idx] = el; }}
-                          className="group relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.06] hover:border-luxury-gold/30 hover:bg-white/[0.04] p-8 md:p-10 rounded-3xl transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.3)] select-none text-left"
+                          className="group relative p-8 md:p-10 rounded-3xl select-none text-left transition-all duration-500"
                         >
+                          {/* Liquid Glass Background */}
+                          <div className="absolute inset-0 rounded-3xl overflow-hidden liquid-glass z-0" />
+                          
+                          {/* Ambient liquid glow backing and specular shine overlay */}
+                          <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none z-0">
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.08),transparent_70%)] pointer-events-none" />
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(212,175,55,0.04),transparent_70%)] pointer-events-none" />
+                            <div className="absolute top-0 left-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[1500ms] ease-out pointer-events-none" />
+                          </div>
+
                           {/* Connecting Point Circle (Desktop Left-aligned) */}
                           <div
                             ref={(el) => { nodesRef.current[idx] = el; }}
@@ -486,36 +510,39 @@ export default function Journey() {
                             <div className="absolute inset-0 rounded-full bg-brand-yellow/50 opacity-0 scale-100 ring-pulse pointer-events-none" />
                           </div>
 
-                          {/* Milestone header */}
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div>
-                              <span className="text-luxury-gold text-xs font-mono font-semibold tracking-wider block mb-1">
-                                {item.year}
+                          {/* Content Container */}
+                          <div className="relative z-10">
+                            {/* Milestone header */}
+                            <div className="flex items-start justify-between gap-4 mb-4">
+                              <div>
+                                <span className="text-luxury-gold text-xs font-mono font-semibold tracking-wider block mb-1">
+                                  {item.year}
+                                </span>
+                                <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase tracking-tight">
+                                  {item.title}
+                                </h3>
+                              </div>
+                              <div className="p-3 bg-white/[0.03] rounded-2xl border border-white/[0.05] group-hover:bg-luxury-gold/15 group-hover:border-luxury-gold/30 transition-colors duration-300">
+                                <Icon className="w-6 h-6 text-luxury-gold" />
+                              </div>
+                            </div>
+
+                            <div className="flex flex-wrap gap-2.5 mb-6">
+                              <span className="text-[10px] bg-white/5 border border-white/[0.05] text-white/80 px-2.5 py-1 rounded-full uppercase font-bold tracking-wider">
+                                {item.institution}
                               </span>
-                              <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase tracking-tight">
-                                {item.title}
-                              </h3>
+                              <span className="text-[10px] bg-luxury-gold/10 border border-luxury-gold/20 text-luxury-gold px-2.5 py-1 rounded-full uppercase font-black tracking-wider">
+                                {item.badge}
+                              </span>
+                              <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/85 px-2.5 py-1 rounded-full font-mono">
+                                {item.grade}
+                              </span>
                             </div>
-                            <div className="p-3 bg-white/[0.03] rounded-2xl border border-white/[0.05] group-hover:bg-luxury-gold/15 group-hover:border-luxury-gold/30 transition-colors duration-300">
-                              <Icon className="w-6 h-6 text-luxury-gold" />
-                            </div>
-                          </div>
 
-                          <div className="flex flex-wrap gap-2.5 mb-6">
-                            <span className="text-[10px] bg-white/5 border border-white/[0.05] text-white/80 px-2.5 py-1 rounded-full uppercase font-bold tracking-wider">
-                              {item.institution}
-                            </span>
-                            <span className="text-[10px] bg-luxury-gold/10 border border-luxury-gold/20 text-luxury-gold px-2.5 py-1 rounded-full uppercase font-black tracking-wider">
-                              {item.badge}
-                            </span>
-                            <span className="text-[10px] bg-white/[0.03] border border-white/[0.03] text-white/85 px-2.5 py-1 rounded-full font-mono">
-                              {item.grade}
-                            </span>
+                            <p className="text-white/75 text-sm leading-relaxed font-light">
+                              {item.details}
+                            </p>
                           </div>
-
-                          <p className="text-white/75 text-sm leading-relaxed font-light">
-                            {item.details}
-                          </p>
                         </div>
                       )}
                     </div>

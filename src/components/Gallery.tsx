@@ -34,7 +34,7 @@ export default function Gallery() {
       title: "The Grid of Silence",
       category: "Pen Artworks",
       description: "Intricate black ink line-art exploring geometry and silence. Hand-drawn with precision micro-pens on raw cotton paper.",
-      image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=600&q=80",
+      image: "/sketches/SK-A-348.jpg",
       icon: PenTool,
     },
     {
@@ -47,11 +47,11 @@ export default function Gallery() {
     },
     {
       id: 4,
-      title: "Abstract Monolith",
-      category: "Graphic Design",
-      description: "Editorial 3D abstract layout and catalog layout design exploring light rendering, metallic gold foils, and minimalist luxury branding.",
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-      icon: ImageIcon,
+      title: "Intricate Textures",
+      category: "Pen Artworks",
+      description: "Detailed hand-drawn sketch exploring fine details and textures, created with precision micro-pens.",
+      image: "/sketches/SK-C-109.jpg",
+      icon: PenTool,
     },
     {
       id: 5,
@@ -66,7 +66,7 @@ export default function Gallery() {
       title: "Organic Flow",
       category: "Pen Artworks",
       description: "Fluid ink patterns investigating natural currents, contours, and waves. Created using fine point technical ink pens.",
-      image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80",
+      image: "/sketches/SK-C-165.jpg",
       icon: PenTool,
     },
   ];
@@ -113,9 +113,20 @@ export default function Gallery() {
   };
 
   return (
-    <section id="projects" className="relative w-full py-24 bg-luxury-bg select-none z-30 overflow-hidden">
+    <section id="projects" className="relative w-full py-24 bg-luxury-bg select-none z-30">
       {/* Floating Stars Background */}
       <FloatingStars />
+
+      {/* Angel background cutout extending into the Journey section above without being cropped */}
+      <div className="absolute right-0 top-[-250px] md:top-[-450px] w-[100%] md:w-[75%] h-[550px] md:h-[850px] max-w-[800px] pointer-events-none z-0 opacity-35 select-none transition-all duration-700">
+        <Image
+          src="/png elements/angel_no_background.png"
+          alt="Angel Background Cutout"
+          fill
+          className="object-contain object-right-top select-none pointer-events-none"
+          priority
+        />
+      </div>
 
       {/* Subtle gold mesh accent */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.01),transparent_70%)] pointer-events-none" />

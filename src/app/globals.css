@@ -178,3 +178,39 @@ html.lenis, html.lenis body {
 .animate-drift-up {
   animation: drift-up linear infinite;
 }
+
+/* Premium Liquid Glass styling inspired by Apple macOS / visionOS Materials */
+.liquid-glass {
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.15) 100%) border-box;
+  border: 1px solid transparent;
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  box-shadow: 
+    /* Soft ambient outer shadow */
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    /* 3D Glass edge reflection - bright inner white top border highlight */
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
+    /* Smooth inner light bleed */
+    inset 0 8px 16px rgba(255, 255, 255, 0.06),
+    /* Soft inner bottom shadow for depth weight */
+    inset 0 -8px 16px rgba(0, 0, 0, 0.3),
+    /* High reflection specular lines */
+    inset 0 0.5px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover shine state for interactive liquid glass elements */
+.liquid-glass:hover {
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.25) 100%) border-box;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.65),
+    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.45),
+    inset 0 12px 24px rgba(255, 255, 255, 0.1),
+    inset 0 -12px 24px rgba(0, 0, 0, 0.35),
+    inset 0 0.5px 1px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+}

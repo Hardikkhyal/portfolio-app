@@ -62,11 +62,11 @@ export default function Navbar() {
       {/* Floating Bottom CTA */}
       <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50">
         <Button
-          variant="gold"
-          className="shadow-2xl shadow-luxury-gold/15 border border-luxury-gold/20 flex items-center gap-2"
+          variant="liquid-glass"
+          className="shadow-2xl flex items-center gap-2"
           onClick={scrollToContact}
         >
-          <Plane className="h-3.5 w-3.5 fill-black stroke-black group-hover:rotate-45 transition-transform duration-500" />
+          <Plane className="h-3.5 w-3.5 fill-white stroke-white group-hover:rotate-45 transition-transform duration-500" />
           <span>Contact Me</span>
         </Button>
       </div>
