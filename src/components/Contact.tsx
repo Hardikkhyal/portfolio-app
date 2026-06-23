@@ -97,13 +97,13 @@ export default function Contact() {
                 get in touch
               </span>
               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white font-display mb-6 leading-none">
-                Let's Create <br />
+                Let&apos;s Create <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-gold via-luxury-goldHover to-white">
                   Something Real
                 </span>
               </h2>
               <p className="text-white/60 text-sm md:text-base font-light leading-relaxed mb-10 max-w-md">
-                Have a project in mind, want to discuss a collaboration, or just looking to say hello? Drop a message, and let's craft an exceptional immersive digital experience.
+                Have a project in mind, want to discuss a collaboration, or just looking to say hello? Drop a message, and let&apos;s craft an exceptional immersive digital experience.
               </p>
             </div>
 
@@ -183,7 +183,7 @@ export default function Contact() {
                     Thank You, Hardik Received!
                   </h3>
                   <p className="text-white/60 text-sm max-w-sm mb-8">
-                    Your message was sent successfully. I will review your request and get back to you within 24 hours. Let's make something amazing.
+                    Your message was sent successfully. I will review your request and get back to you within 24 hours. Let&apos;s make something amazing.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
