@@ -61,14 +61,25 @@ export default function Home() {
         <Journey />
       </div>
 
-      {/* Gallery Showcase */}
-      <Gallery />
+      {/* Shared continuous background wrapper for Selected Works, Client Love, and Get in Touch */}
+      <div
+        className="relative w-full bg-cover bg-no-repeat z-30 mt-[-200px]"
+        style={{
+          backgroundImage: "url('/images/b8149f5d-5b0b-4940-80aa-c81d036bfe42.png')",
+          backgroundPosition: "center 80px",
+          maskImage: "linear-gradient(to bottom, transparent 0px, rgba(0,0,0,0.15) 20px, rgba(0,0,0,0.55) 50px, rgba(0,0,0,0.88) 80px, black 100px)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0px, rgba(0,0,0,0.15) 20px, rgba(0,0,0,0.55) 50px, rgba(0,0,0,0.88) 80px, black 100px)",
+        }}
+      >
+        {/* Gallery Showcase */}
+        <Gallery />
 
-      {/* Client Love Testimonials */}
-      <Welcome testimonials={testimonials} />
+        {/* Client Love Testimonials */}
+        <Welcome testimonials={testimonials} />
 
-      {/* Contact Section */}
-      <Contact />
+        {/* Contact Section */}
+        <Contact />
+      </div>
 
       {/* Interactive Footer */}
       <Footer />

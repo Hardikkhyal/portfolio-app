@@ -280,7 +280,7 @@ export default function Journey() {
     <section
       ref={containerRef}
       id="journey"
-      className="relative w-full z-20 mt-[-50vh] select-none"
+      className="relative w-full z-40 mt-[-50vh] select-none"
     >
       {/*
         Cinematic blend wrapper
@@ -301,8 +301,8 @@ export default function Journey() {
           backgroundSize: "cover",
           backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
-          maskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 10vh, rgba(0,0,0,0.55) 25vh, rgba(0,0,0,0.88) 40vh, black 50vh)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 10vh, rgba(0,0,0,0.55) 25vh, rgba(0,0,0,0.88) 40vh, black 50vh)",
+          maskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 10vh, rgba(0,0,0,0.55) 25vh, rgba(0,0,0,0.88) 40vh, black 50vh, black calc(100% - 100px), transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 0vh, rgba(0,0,0,0.15) 10vh, rgba(0,0,0,0.55) 25vh, rgba(0,0,0,0.88) 40vh, black 50vh, black calc(100% - 100px), transparent 100%)",
         }}
       >
         {/* Floating Stars Background */}
