@@ -31,24 +31,24 @@ function SkillCard({ icon: Icon, title, description, tags, index }: SkillCardPro
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
-      className="group relative backdrop-blur-xl bg-white/[0.02] border border-white/[0.06] hover:border-luxury-gold/30 hover:bg-white/[0.04] p-8 rounded-3xl transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:-translate-y-2 select-none text-left flex flex-col justify-between h-full"
+      className="group relative bg-white border border-slate-100 hover:border-blue-600/30 p-8 rounded-3xl transition-all duration-500 shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:-translate-y-2 select-none text-left flex flex-col justify-between h-full"
     >
       {/* Glow effect on hover */}
-      <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.06),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_50%_0%,rgba(37,99,235,0.06),transparent_50%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div>
         {/* Icon & Title */}
         <div className="flex items-center gap-4 mb-5">
-          <div className="p-3.5 bg-white/[0.03] rounded-2xl border border-white/[0.05] group-hover:bg-luxury-gold/15 group-hover:border-luxury-gold/30 group-hover:scale-110 transition-all duration-300">
-            <Icon className="w-6 h-6 text-luxury-gold" />
+          <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 group-hover:bg-blue-600/10 group-hover:border-blue-600/30 group-hover:scale-110 transition-all duration-300">
+            <Icon className="w-6 h-6 text-blue-600" />
           </div>
-          <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase tracking-tight font-display">
+          <h3 className="text-xl md:text-2xl font-black text-slate-900 leading-tight uppercase tracking-tight font-display">
             {title}
           </h3>
         </div>
 
         {/* Description */}
-        <p className="text-white/75 text-sm md:text-base leading-relaxed font-light mb-6">
+        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-light mb-6">
           {description}
         </p>
       </div>
@@ -58,7 +58,7 @@ function SkillCard({ icon: Icon, title, description, tags, index }: SkillCardPro
         {tags.map((tag) => (
           <span
             key={tag}
-            className="text-[10px] bg-white/5 border border-white/[0.05] text-white/80 px-2.5 py-1 rounded-full uppercase font-bold tracking-wider group-hover:border-luxury-gold/25 group-hover:text-luxury-gold transition-colors duration-300"
+            className="text-[10px] bg-slate-100 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full uppercase font-bold tracking-wider group-hover:border-blue-600/25 group-hover:text-blue-600 transition-colors duration-300"
           >
             {tag}
           </span>
@@ -93,7 +93,7 @@ export default function Skills() {
   return (
     <section id="skills" className="relative w-full py-12 md:py-16 select-none z-30">
       {/* Subtle background glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.01),transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.01),transparent_70%)] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}

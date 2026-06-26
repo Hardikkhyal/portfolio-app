@@ -27,7 +27,7 @@ export default function Welcome({ testimonials = [] }: WelcomeProps) {
     <div
       ref={welcomeRef}
       id="about"
-      className="relative w-full flex flex-col justify-center items-center overflow-hidden bg-luxury-bg select-none noise-overlay text-white py-12 md:py-16 z-30"
+      className="relative w-full flex flex-col justify-center items-center overflow-hidden select-none noise-overlay text-white py-12 md:py-16 z-30"
     >
       {/* Floating Stars Background */}
       <FloatingStars />
