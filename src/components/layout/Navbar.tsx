@@ -1,34 +1,24 @@
 "use client";
 
-import { Phone, Mail, Plane } from "lucide-react";
-import Button from "../ui/Button";
+import { Phone, Mail } from "lucide-react";
 
 export default function Navbar() {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <>
-      {/* Top Navbar Header */}
+      
       <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/80 to-transparent border-b border-white/[0.03] backdrop-blur-[4px] py-5 px-6 md:px-12 flex items-center justify-between">
-        {/* Logo */}
+        
         <div>
           <a href="#" className="font-display text-lg md:text-xl font-extrabold tracking-widest text-white uppercase group transition-all duration-300">
             hardik khyal <span className="text-luxury-gold transition-colors group-hover:text-white">®</span>
           </a>
         </div>
 
-        {/* Navigation Links */}
+        
         <nav className="hidden md:flex items-center gap-8">
           {[
             { label: "About", id: "about" },
-            { label: "Projects", id: "projects" },
-            { label: "Skills", id: "skills" },
-            { label: "Contact", id: "contact" }
+            { label: "Skills", id: "skills" }
           ].map((item) => (
             <a
               key={item.label}
@@ -40,7 +30,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Contact Links */}
+        
         <div className="flex items-center gap-6">
           <a
             href="tel:+919876543210"
@@ -58,18 +48,6 @@ export default function Navbar() {
           </a>
         </div>
       </header>
-
-      {/* Floating Bottom CTA */}
-      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50">
-        <Button
-          variant="liquid-glass"
-          className="shadow-2xl flex items-center gap-2"
-          onClick={scrollToContact}
-        >
-          <Plane className="h-3.5 w-3.5 fill-white stroke-white group-hover:rotate-45 transition-transform duration-500" />
-          <span>Contact Me</span>
-        </Button>
-      </div>
     </>
   );
 }

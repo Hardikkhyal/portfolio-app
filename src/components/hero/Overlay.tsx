@@ -31,7 +31,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Dedicated GSAP / ScrollTrigger timeline on mobile for slower, better sequenced pacing
+  
   useEffect(() => {
     if (!isMobile) return;
 
@@ -46,8 +46,8 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
 
     if (!titleUpper || !titleMain || !subheading || !container) return;
 
-    // Reset initial states for mobile:
-    // Logo, main heading ("HARDIKKHYAL"), and top heading are initially shown. Nothing else.
+    
+    
     gsap.set([titleUpper, titleMain], { opacity: 1, scale: 1, y: 0 });
     gsap.set(subheading, { opacity: 0, scale: 0.95, y: 20 });
 
@@ -56,14 +56,14 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
         trigger: container,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1, // Slower, smooth pacing
+        scrub: 1, 
       },
     });
 
-    tl.to(subheading, { opacity: 1, scale: 1, y: 0, duration: 2 }) // Subheading fades in smoothly
-      .to(subheading, { duration: 2.5 }) // Keep it visible briefly
-      .to(subheading, { opacity: 0, scale: 1.05, y: -20, duration: 2 }) // Subheading fades out
-      .to([titleUpper, titleMain], { opacity: 0, duration: 2, ease: "power1.inOut" }); // Fade out title at the very end
+    tl.to(subheading, { opacity: 1, scale: 1, y: 0, duration: 2 }) 
+      .to(subheading, { duration: 2.5 }) 
+      .to(subheading, { opacity: 0, scale: 1.05, y: -20, duration: 2 }) 
+      .to([titleUpper, titleMain], { opacity: 0, duration: 2, ease: "power1.inOut" }); 
 
     return () => {
       if (tl.scrollTrigger) tl.scrollTrigger.kill();
@@ -71,9 +71,9 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
     };
   }, [isMobile]);
 
-  // =========================================================================
-  // Desktop Transform Mappings (Kept 100% Intact)
-  // =========================================================================
+  
+  
+  
   const titleOpacity = useTransform(scrollYProgress, [0.85, 1.0], [1, 0], { clamp: true });
   const titleScale = useTransform(scrollYProgress, [0.85, 1.0], [1, 1.15], { clamp: true });
   const titleY = useTransform(scrollYProgress, [0.85, 1.0], [0, -30], { clamp: true });
@@ -87,7 +87,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
 
   return (
     <div className="absolute inset-0 pointer-events-none z-20 w-full h-full">
-      {/* Layer 1: Initial View Hero Title */}
+      
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
         <motion.span
           ref={titleRef}
@@ -105,7 +105,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
           hardikkhyal
         </motion.h1>
 
-        {/* Subtle grey description text with its own separate animation */}
+        
         <motion.p
           ref={subheadingRef}
           style={!mounted || isMobile ? {} : { opacity: subheadingOpacity, scale: subheadingScale, y: subheadingY }}
@@ -114,7 +114,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
           Hardik Khyal is a creative developer crafting high-performance, high-end web applications with pixel perfection.
         </motion.p>
 
-        {/* Scroll hint with its own separate animation */}
+        
         <motion.p
           style={{ opacity: hintOpacity, y: hintY }}
           className="text-white/20 text-xs md:text-sm uppercase tracking-widest mt-8 animate-pulse select-none"

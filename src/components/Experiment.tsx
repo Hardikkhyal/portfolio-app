@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Stamp from "./ui/Stamp";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -49,44 +50,48 @@ const DeveloperPanelContent = () => {
   ];
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-transparent">
       <img
         src="/images/BLUE.jpg"
-        alt="Parallax 2 Background"
+        alt="Developer Panel Background"
         className="absolute inset-0 w-full h-full object-cover object-top opacity-100"
       />
+      {/* Official Approval Seal stamp */}
+      <Stamp className="absolute top-24 right-3 md:right-6 w-36 h-36 md:w-48 md:h-48 opacity-70 rotate-[15deg] z-20" color="#B22222" />
 
       {/* 12-Column Editorial Grid System */}
-      <div className="absolute inset-0 z-10 w-full h-full p-6 md:p-12 lg:p-20 grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-8">
-        
+      <div className="absolute inset-0 z-10 w-full h-full p-6 md:p-12 lg:p-20 grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-8 overflow-y-auto md:overflow-hidden scrollbar-none">
+
         {/* Negative Space Top */}
-        <div className="col-span-4 md:col-span-12 h-16 md:h-32 flex justify-end items-start border-b border-white/10">
-           <div className="text-white/40 text-xs font-mono tracking-widest mt-2">[ SECT / 03 ]</div>
+        <div className="col-span-4 md:col-span-12 h-12 md:h-24 flex justify-between items-start border-b border-white/10 pb-2">
+          <div className="text-white/40 text-[10px] font-mono tracking-widest uppercase mt-2">[ DEV_CORE: ACTIVE / PORTFOLIO_SYS ]</div>
+          <div className="text-white/40 text-xs font-mono tracking-widest mt-2">[ SECT / 03 ]</div>
         </div>
 
         {/* Hero Typography (Left Side) */}
-        <div className="col-span-4 md:col-span-5 flex flex-col justify-start pt-12 relative">
-          <h1 
-            className="text-[10rem] md:text-[14rem] lg:text-[20rem] leading-[0.65] font-black uppercase tracking-tighter text-black mix-blend-screen font-display -ml-1 md:-ml-2"
+        <div className="col-span-4 md:col-span-5 flex flex-col justify-start pt-6 md:pt-12 relative">
+          <span className="text-brand-yellow text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block md:hidden">capabilities & design</span>
+          <h1
+            className="text-[4.5rem] md:text-[10rem] lg:text-[14rem] leading-[0.65] font-black uppercase tracking-tighter text-black mix-blend-screen font-display -ml-1 md:-ml-2"
             style={{ textShadow: "-2px -2px 0 rgba(255,255,255,0.8), 2px -2px 0 rgba(255,255,255,0.8), -2px 2px 0 rgba(255,255,255,0.8), 2px 2px 0 rgba(255,255,255,0.8)" }}
           >
             DEV
           </h1>
-          <h1 className="text-[3rem] md:text-[5rem] lg:text-[7rem] leading-[0.8] font-black uppercase tracking-tighter text-white font-display drop-shadow-2xl absolute top-32 md:top-48 lg:top-64 left-0">
+          <h1 className="text-[2.2rem] md:text-[3.5rem] lg:text-[5rem] leading-[0.8] font-black uppercase tracking-tighter text-white font-display drop-shadow-2xl absolute top-16 md:top-32 lg:top-48 left-0">
             DEVELOPER
           </h1>
         </div>
 
         {/* Vertical Divider */}
         <div className="hidden md:block col-span-1 border-r border-white/20 h-full relative">
-           <div className="absolute top-1/2 -right-[5px] text-white/50 text-xs">+</div>
+          <div className="absolute top-1/2 -right-[5px] text-white/50 text-xs">+</div>
         </div>
 
         {/* Developer Projects Accordion (Right Side) */}
         <div className="col-span-4 md:col-span-6 flex flex-col justify-end pb-8 md:pl-24 lg:pl-36">
           <div className="mb-8 lg:mb-12">
             <p className="text-sm md:text-base text-brand-yellow font-mono tracking-widest mb-4">
-              // ENGINEERING PORTFOLIO
+              {"// ENGINEERING PORTFOLIO"}
             </p>
             <p className="text-lg md:text-2xl text-white/90 font-medium leading-relaxed max-w-xl">
               Then I discovered the magic of code. Architecture, logic, and systems that scale.
@@ -97,7 +102,7 @@ const DeveloperPanelContent = () => {
             {projects.map((project, idx) => {
               const isActive = activeProject === idx;
               return (
-                <div 
+                <div
                   key={project.id}
                   onClick={() => {
                     setDisplayedProject(idx);
@@ -105,7 +110,6 @@ const DeveloperPanelContent = () => {
                   }}
                   className="group cursor-pointer border-b border-white/20 overflow-hidden"
                 >
-                  {/* Header Row */}
                   <div className="flex items-center justify-between py-6 transition-colors duration-300 group-hover:bg-white/5 px-4 -mx-4">
                     <div className="flex items-center gap-4 md:gap-8">
                       <span className="text-xs font-mono text-white/40 tracking-widest">[{project.id}]</span>
@@ -127,10 +131,10 @@ const DeveloperPanelContent = () => {
 
       {/* Animated Floating Modal Card (Rendered via Portal on top layer) */}
       {mounted && typeof document !== 'undefined' && createPortal(
-        <div 
+        <div
           className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] w-[90%] max-w-3xl min-h-[500px] bg-white/95 backdrop-blur-xl border border-black/10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-700 ease-out transform ${activeProject !== null ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'} flex flex-col md:flex-row overflow-hidden`}
         >
-          <button 
+          <button
             onClick={() => setActiveProject(null)}
             className="absolute top-6 right-6 text-black/50 hover:text-black text-xs font-mono tracking-widest transition-colors cursor-pointer z-10"
           >
@@ -144,7 +148,7 @@ const DeveloperPanelContent = () => {
               <svg className="w-8 h-8 text-black mb-8 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
               </svg>
-              
+
               <span className="block text-xs font-mono text-black/40 tracking-widest mb-4">
                 [{projects[displayedProject].id}]
               </span>
@@ -158,7 +162,7 @@ const DeveloperPanelContent = () => {
                 [ VIEW PROJECT ]
               </button>
               <button className="w-full py-4 px-6 border border-black/20 text-black/60 text-xs font-mono tracking-widest uppercase hover:border-black hover:text-black transition-colors duration-300 flex items-center justify-center gap-3">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
                 GITHUB LINK
               </button>
             </div>
@@ -176,7 +180,7 @@ const DeveloperPanelContent = () => {
                 <p className="text-base md:text-lg text-black/80 leading-relaxed font-sans">{projects[displayedProject].how}</p>
               </div>
             </div>
-            
+
             <div className="pt-8 mt-8 border-t border-black/10">
               <span className="block text-xs md:text-sm font-mono text-black/40 uppercase tracking-widest mb-2">TECH STACK:</span>
               <span className="text-sm md:text-base font-mono text-black uppercase tracking-widest">{projects[displayedProject].tech}</span>
@@ -189,30 +193,6 @@ const DeveloperPanelContent = () => {
   );
 };
 export const EXPERIMENT_PANELS = [
-  {
-    id: "panel-1",
-    bgColor: "bg-blue-600",
-    content: (
-      <>
-        <img
-          src="/images/BLUE.jpg"
-          alt="Parallax 3 Background"
-          className="absolute inset-0 w-full h-full object-cover object-top opacity-100"
-        />
-        <div className="absolute top-0 left-0 z-10 p-8 md:p-16 max-w-4xl">
-          <span className="block w-full text-center text-luxury-gold text-sm md:text-lg font-bold uppercase tracking-[0.3em] mb-4">
-            Chapter ONE
-          </span>
-          <h1 className="text-5xl md:text-[8rem] lg:text-[10rem] leading-none font-black uppercase tracking-tight text-white font-display drop-shadow-2xl mb-6 whitespace-nowrap">
-            THE CREATER
-          </h1>
-          <p className="text-xl md:text-3xl text-white/90 font-medium drop-shadow-lg leading-relaxed max-w-2xl ml-2 md:ml-2 lg:ml-8">
-            Before i evr wrote code i learned to comunicate thorugh ink.
-          </p>
-        </div>
-      </>
-    ),
-  },
   {
     id: "panel-2",
     bgColor: "bg-transparent",
@@ -230,8 +210,8 @@ export const EXPERIMENT_PANELS = [
         />
 
         {/* 12-Column Editorial Grid System */}
-        <div className="absolute inset-0 z-10 w-full h-full p-6 md:p-12 lg:p-20 grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-8">
-          
+        <div className="absolute inset-0 z-10 w-full h-full p-6 md:p-12 lg:p-20 grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-8 overflow-y-auto md:overflow-hidden scrollbar-none">
+
           {/* Row 1: Top Navigation / Micro details */}
           <div className="col-span-4 md:col-span-12 flex justify-between items-start h-fit">
             <div className="flex items-center gap-6">
@@ -251,16 +231,17 @@ export const EXPERIMENT_PANELS = [
           </div>
 
           {/* The Hero Typography block (Cols 2 to 7) */}
-          <div className="col-span-4 md:col-span-6 flex flex-col justify-center h-full relative -mt-10">
+          <div className="col-span-4 md:col-span-6 flex flex-col justify-center h-full relative -mt-6 md:-mt-10">
+            <span className="text-luxury-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block md:hidden">creative direction</span>
             {/* THE (Wireframe) */}
-            <h1 
-              className="text-[6rem] md:text-[9rem] lg:text-[14rem] leading-[0.75] font-black uppercase tracking-tighter text-black mix-blend-screen font-display"
+            <h1
+              className="text-[4.5rem] md:text-[9rem] lg:text-[14rem] leading-[0.75] font-black uppercase tracking-tighter text-black mix-blend-screen font-display"
               style={{ textShadow: "-2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff, 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff" }}
             >
               THE
             </h1>
             {/* DESIGNER (Solid) */}
-            <h1 className="text-[3.5rem] md:text-[5.5rem] lg:text-[8rem] leading-[0.8] font-black uppercase tracking-tighter text-white font-display drop-shadow-2xl ml-1 md:ml-2 mb-8 md:mb-16">
+            <h1 className="text-[2.2rem] md:text-[3.5rem] lg:text-[5.5rem] leading-[0.8] font-black uppercase tracking-tighter text-white font-display drop-shadow-2xl ml-1 md:ml-2 mb-4 md:mb-16">
               DESIGNER
             </h1>
 
@@ -268,14 +249,14 @@ export const EXPERIMENT_PANELS = [
             <div className="w-full md:max-w-md ml-2 md:ml-4 relative pl-6 md:pl-8 border-l border-white/20">
               <div className="absolute left-0 top-0 w-[2px] h-1/3 bg-brand-yellow"></div>
               <p className="text-sm md:text-base text-white/70 font-sans leading-relaxed">
-                Before intention, there was curiosity. An empty page wasn't a void, but a question. Drawing wasn't about creating pictures; it was the discipline of pure observation. Through every stroke of ink, seeing slowly evolved into instinct—laying an architectural foundation for everything that followed.
+                {"Before intention, there was curiosity. An empty page wasn't a void, but a question. Drawing wasn't about creating pictures; it was the discipline of pure observation. Through every stroke of ink, seeing slowly evolved into instinct—laying an architectural foundation for everything that followed."}
               </p>
             </div>
           </div>
 
           {/* Image Gallery Section (Cols 8 to 12) - 3 images modular layout */}
           <div className="col-span-4 md:col-span-5 flex flex-col justify-center h-full gap-4 md:gap-6 relative mt-12 md:mt-0 pb-10">
-            
+
             {/* Abstract geometric framing line */}
             <div className="absolute -top-12 -right-8 w-32 h-[1px] bg-luxury-gold/50 hidden md:block"></div>
             <div className="absolute -top-12 -right-8 w-[1px] h-32 bg-luxury-gold/50 hidden md:block"></div>
@@ -292,7 +273,7 @@ export const EXPERIMENT_PANELS = [
                 [ 01 ]
               </div>
             </div>
-            
+
             {/* 2 Small Supporting Images */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
               <div className="aspect-[4/3] overflow-hidden group bg-[#050505] relative shadow-xl">
@@ -305,7 +286,7 @@ export const EXPERIMENT_PANELS = [
                   [ 02 ]
                 </div>
               </div>
-              <div className="aspect-[4/3] overflow-hidden group bg-[#050505] relative shadow-xl md:mt-8"> 
+              <div className="aspect-[4/3] overflow-hidden group bg-[#050505] relative shadow-xl md:mt-8">
                 {/* Asymmetric offset for golden ratio tension */}
                 <img
                   src="/png%20elements/image.png"

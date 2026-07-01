@@ -19,13 +19,13 @@ export default function FloatingStars() {
   useEffect(() => {
     // Generate stars only on client side to prevent SSR hydration mismatches
     const generatedStars: Star[] = Array.from({ length: 45 }).map((_, i) => {
-      const size = Math.random() * 2 + 1; // 1px to 3px
+      const size = Math.random() * 2 + 1; 
       const left = `${Math.random() * 100}%`;
       const top = `${Math.random() * 100}%`;
-      const delay = `${Math.random() * -30}s`; // Start immediately at different phases
-      const duration = `${Math.random() * 20 + 20}s`; // Slow, elegant float speeds (20s to 40s)
-      const opacity = Math.random() * 0.5 + 0.15; // Soft opacities
-      const isGold = Math.random() < 0.25; // 25% of stars are gold accents
+      const delay = `${Math.random() * -30}s`; 
+      const duration = `${Math.random() * 20 + 20}s`; 
+      const opacity = Math.random() * 0.5 + 0.15; 
+      const isGold = Math.random() < 0.25; 
 
       return {
         id: i,

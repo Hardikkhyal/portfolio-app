@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, ReactNode } from "react";
+import gsap from "gsap";
 
 interface SmoothScrollProps {
   children: ReactNode;
@@ -8,7 +9,6 @@ interface SmoothScrollProps {
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
   const lenisRef = useRef<import("@studio-freight/lenis").default | null>(null);
-  const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -17,41 +17,45 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) return;
 
-    // Lazy-load GSAP ScrollTrigger sync
-    let scrollTriggerRef: { update: () => void } | null = null;
-    import("gsap/ScrollTrigger")
-      .then((mod) => { scrollTriggerRef = mod.ScrollTrigger; })
-      .catch(() => {});
+    let lenisInstance: any;
+    let rafCallback: (time: number) => void;
 
-    // Create Lenis
-    import("@studio-freight/lenis").then(({ default: Lenis }) => {
-      const lenis = new Lenis({
-        duration: 1.4,
+    Promise.all([
+      import("gsap/ScrollTrigger"),
+      import("@studio-freight/lenis")
+    ]).then(([ { ScrollTrigger }, { default: Lenis } ]) => {
+      
+      gsap.registerPlugin(ScrollTrigger);
+
+      lenisInstance = new Lenis({
+        duration: 1.5,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: "vertical",
         gestureOrientation: "vertical",
         smoothWheel: true,
-        wheelMultiplier: 0.9,
-        touchMultiplier: 1.5,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
       });
 
-      lenisRef.current = lenis;
+      lenisRef.current = lenisInstance;
 
-      function raf(time: number) {
-        lenis.raf(time);
-        if (scrollTriggerRef) scrollTriggerRef.update();
-        rafIdRef.current = requestAnimationFrame(raf);
-      }
-      rafIdRef.current = requestAnimationFrame(raf);
+      lenisInstance.on('scroll', ScrollTrigger.update);
+
+      rafCallback = (time: number) => {
+        lenisInstance.raf(time * 1000);
+      };
+
+      gsap.ticker.add(rafCallback);
+      gsap.ticker.lagSmoothing(0);
     });
 
     return () => {
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-        rafIdRef.current = null;
+      if (lenisInstance) {
+        lenisInstance.destroy();
       }
-      lenisRef.current?.destroy();
-      lenisRef.current = null;
+      if (rafCallback) {
+        gsap.ticker.remove(rafCallback);
+      }
     };
   }, []);
 

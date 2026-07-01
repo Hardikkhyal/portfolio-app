@@ -30,7 +30,7 @@ export default function HeroScroll() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Preload sequence images from public folder
+  
   const { images, isLoaded, progress } = useImagePreloader(
     sequencePath,
     TOTAL_FRAMES,
@@ -39,16 +39,16 @@ export default function HeroScroll() {
     3
   );
 
-  // Monitor scroll progress on the parent container (400vh track)
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Map scroll progress [0, 0.75] to frame index [0, 89] and clamp it
+  
   const frameIndex = useTransform(scrollYProgress, [0, 0.75], [0, TOTAL_FRAMES - 1], { clamp: true });
 
-  // Object-fit: cover drawing implementation for canvas
+  
   const drawImageCover = (
     ctx: CanvasRenderingContext2D,
     img: HTMLImageElement,
@@ -91,7 +91,7 @@ export default function HeroScroll() {
     ctx.drawImage(img, cx, cy, cw, ch, x, y, w, h);
   };
 
-  // Rendering frame callback
+  
   const renderFrame = useCallback(
     (index: number) => {
       const canvas = canvasRef.current;
@@ -104,13 +104,13 @@ export default function HeroScroll() {
 
       currentFrameRef.current = index;
 
-      // Draw image cover-cropped
+      
       drawImageCover(ctx, img, 0, 0, canvas.width, canvas.height);
     },
     [images]
   );
 
-  // Resize listener
+  
   useEffect(() => {
     if (!isLoaded || images.length === 0) return;
 
@@ -128,18 +128,18 @@ export default function HeroScroll() {
     return () => window.removeEventListener("resize", handleResize);
   }, [isLoaded, images, renderFrame]);
 
-  // Sync scroll motion value updates using requestAnimationFrame
+  
   useMotionValueEvent(frameIndex, "change", (latest) => {
     if (!isLoaded) return;
     const targetIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(latest)));
 
-    // Draw on animation frame to lock onto monitor refresh rates (60fps+)
+    
     requestAnimationFrame(() => {
       renderFrame(targetIndex);
     });
   });
 
-  // Draw current frame immediately when assets load
+  
   useEffect(() => {
     if (isLoaded && images.length > 0) {
       const currentIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(frameIndex.get())));
@@ -149,49 +149,49 @@ export default function HeroScroll() {
 
   return (
     <>
-      {/* Cinematic departure preloading screen */}
+      
       {!isLoaded && (
         <div className="fixed inset-0 bg-[#050505] z-50 flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center max-w-[280px] w-full px-4 text-center">
+          <div className="flex flex-col items-center max-w-[17.5rem] w-full px-4 text-center">
             <span className="text-luxury-gold text-xs font-semibold uppercase tracking-widest mb-2 select-none">
               hardik khyal
             </span>
             <h3 className="text-white text-lg font-display font-light mb-8 select-none">
               Initializing Portfolio...
             </h3>
-            {/* Loading Bar Track */}
+            
             <div className="w-full h-[1px] bg-white/10 relative overflow-hidden mb-3">
               <div
                 className="h-full bg-luxury-gold transition-all duration-300 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <span className="text-white/30 text-[10px] tracking-widest font-mono select-none">
+            <span className="text-white/30 text-[0.625rem] tracking-widest font-mono select-none">
               {progress}% LOADED
             </span>
           </div>
         </div>
       )}
 
-      {/* Main scroll height container track */}
+      
       <div ref={containerRef} data-hero-section className="relative h-[400vh] bg-transparent">
-        {/* Sticky viewport content wrapper */}
+        
         <div className="sticky top-0 left-0 w-full h-screen overflow-hidden">
-          {/* Main Canvas drawing sequence */}
+          
           <canvas
             ref={canvasRef}
             className="absolute top-0 left-0 w-full h-full object-cover block will-change-transform z-10 hero-canvas"
           />
 
-          {/* Typography overlays */}
+          
           {isLoaded && <Overlay scrollYProgress={scrollYProgress} />}
 
-          {/* Top vignette for text legibility only */}
+          
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/0 to-transparent pointer-events-none z-15" />
 
-          {/* Bottom cross-fade vignette — dissolves hero last frame into fetures.jpg blend zone */}
+          
           <div
-            className="absolute bottom-0 left-0 w-full h-[200px] pointer-events-none z-15"
+            className="absolute bottom-0 left-0 w-full h-[12.5rem] pointer-events-none z-15"
             style={{ background: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.6) 100%)" }}
           />
         </div>
